@@ -82,7 +82,7 @@ class VideoList extends Component {
     this.grid = null;
     this.canvas = null;
     this.failedMediaElements = [];
-    this.handleCanvasResize = _.throttle(this.handleCanvasResize.bind(this), 66,
+    this.handleCanvasResize = _.throttle(this.handleCanvasResize.bind(this), 33,
       {
         leading: true,
         trailing: true,

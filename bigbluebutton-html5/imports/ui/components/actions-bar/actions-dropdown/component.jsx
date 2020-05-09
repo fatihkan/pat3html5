@@ -13,6 +13,7 @@ import { withModalMounter } from '/imports/ui/components/modal/service';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import { styles } from '../styles';
 import ExternalVideoModal from '/imports/ui/components/external-video-player/modal/container';
+import ExternalWebModal from '/imports/ui/components/external-web-player/modal/container';
 
 const propTypes = {
   amIPresenter: PropTypes.bool.isRequired,
@@ -22,7 +23,9 @@ const propTypes = {
   shortcuts: PropTypes.string,
   handleTakePresenter: PropTypes.func.isRequired,
   allowExternalVideo: PropTypes.bool.isRequired,
+  allowExternalWeb: PropTypes.bool.isRequired,
   stopExternalVideoShare: PropTypes.func.isRequired,
+  stopExternalWebShare: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -79,13 +82,14 @@ const intlMessages = defineMessages({
 class ActionsDropdown extends PureComponent {
   constructor(props) {
     super(props);
-
     this.presentationItemId = _.uniqueId('action-item-');
     this.pollId = _.uniqueId('action-item-');
     this.takePresenterId = _.uniqueId('action-item-');
 
     this.handlePresentationClick = this.handlePresentationClick.bind(this);
     this.handleExternalVideoClick = this.handleExternalVideoClick.bind(this);
+    this.handleExternalWebClick = this.handleExternalWebClick.bind(this);
+    this.handleGameBoard = this.handleGameBoard.bind(this);
   }
 
   componentWillUpdate(nextProps) {
@@ -101,10 +105,13 @@ class ActionsDropdown extends PureComponent {
       intl,
       amIPresenter,
       allowExternalVideo,
+      allowExternalWeb,
       handleTakePresenter,
       isSharingVideo,
+      isSharingWeb,
       isPollingEnabled,
       stopExternalVideoShare,
+      stopExternalWebShare
     } = this.props;
 
     const {
@@ -149,19 +156,30 @@ class ActionsDropdown extends PureComponent {
           />
         )
         : null),
-      (amIPresenter
+      // (amIPresenter
+      //   ? (
+      //     <DropdownListItem
+      //       data-test="uploadPresentation"
+      //       icon="presentation"
+      //       label={formatMessage(presentationLabel)}
+      //       description={formatMessage(presentationDesc)}
+      //       key={this.presentationItemId}
+      //       onClick={this.handlePresentationClick}
+      //     />
+      //   )
+      //   : null),
+      (amIPresenter && allowExternalVideo 
         ? (
           <DropdownListItem
-            data-test="uploadPresentation"
-            icon="presentation"
-            label={formatMessage(presentationLabel)}
-            description={formatMessage(presentationDesc)}
-            key={this.presentationItemId}
-            onClick={this.handlePresentationClick}
+            icon="video"
+            label={'Game Board'}
+            description="External Video"
+            key="external-video"
+            onClick={isSharingVideo ? stopExternalVideoShare : this.handleGameBoard}
           />
         )
-        : null),
-      (amIPresenter && allowExternalVideo
+        : null), 
+        (amIPresenter && allowExternalVideo
         ? (
           <DropdownListItem
             icon="video"
@@ -172,13 +190,37 @@ class ActionsDropdown extends PureComponent {
             onClick={isSharingVideo ? stopExternalVideoShare : this.handleExternalVideoClick}
           />
         )
+        : null), 
+        (amIPresenter
+        ? (
+          <></>
+        //  <DropdownListItem
+        //     icon="presentation"
+        //     label={!isSharingWeb ? intl.formatMessage(intlMessages.startExternalVideoLabel)
+        //       : intl.formatMessage(intlMessages.stopExternalVideoLabel)}
+        //     description="External Web"
+        //     key="external-web"
+        //     onClick={isSharingWeb ? stopExternalWebShare : this.handleExternalWebClick}
+        //   />
+        )
         : null),
     ]);
   }
 
+  
+  handleGameBoard() {
+   const { mountModal } = this.props;
+    mountModal(<ExternalWebModal />);
+  }
+  
   handleExternalVideoClick() {
     const { mountModal } = this.props;
     mountModal(<ExternalVideoModal />);
+  }
+
+  handleExternalWebClick() {
+    const { mountModal } = this.props;
+    mountModal(<ExternalWebModal />);
   }
 
   handlePresentationClick() {

@@ -10,6 +10,7 @@ import ActionsBar from './component';
 import Service from './service';
 import VideoService from '../video-provider/service';
 import ExternalVideoService from '/imports/ui/components/external-video-player/service';
+import ExternalWebService from '/imports/ui/components/external-web-player/service';
 import CaptionsService from '/imports/ui/components/captions/service';
 import {
   shareScreen,
@@ -24,6 +25,7 @@ import MediaService, {
   shouldEnableSwapLayout,
 } from '../media/service';
 
+
 const ActionsBarContainer = props => <ActionsBar {...props} />;
 const POLLING_ENABLED = Meteor.settings.public.poll.enabled;
 
@@ -31,6 +33,7 @@ export default withTracker(() => ({
   amIPresenter: Service.amIPresenter(),
   amIModerator: Service.amIModerator(),
   stopExternalVideoShare: ExternalVideoService.stopWatching,
+  stopExternalWebShare: ExternalWebService.stopWatching,
   handleExitVideo: () => VideoService.exitVideo(),
   handleJoinVideo: () => VideoService.joinVideo(),
   handleShareScreen: onFail => shareScreen(onFail),
@@ -52,4 +55,5 @@ export default withTracker(() => ({
   isThereCurrentPresentation: Presentations.findOne({ meetingId: Auth.meetingID, current: true },
     { fields: {} }),
   allowExternalVideo: Meteor.settings.public.externalVideoPlayer.enabled,
+  allowExternalWeb: Meteor.settings.public.externalVideoPlayer.enabled,
 }))(injectIntl(ActionsBarContainer));

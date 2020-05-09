@@ -110,7 +110,7 @@ const intlMessages = defineMessages({
 });
 
 const MIN_BREAKOUT_ROOMS = 2;
-const MAX_BREAKOUT_ROOMS = 8;
+const MAX_BREAKOUT_ROOMS = 20;
 
 const propTypes = {
   intl: intlShape.isRequired,
@@ -397,9 +397,7 @@ class BreakoutRoom extends PureComponent {
       valid,
       numberOfRooms,
     } = this.state;
-    const rooms = (numberOfRooms > MAX_BREAKOUT_ROOMS
-      || numberOfRooms < MIN_BREAKOUT_ROOMS)
-      ? 0 : numberOfRooms;
+     const rooms = (numberOfRooms > MAX_BREAKOUT_ROOMS) ? 0 : numberOfRooms;
     const allowDrop = (ev) => {
       ev.preventDefault();
     };

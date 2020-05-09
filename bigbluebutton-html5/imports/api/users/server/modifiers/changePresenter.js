@@ -2,6 +2,7 @@ import Logger from '/imports/startup/server/logger';
 import Users from '/imports/api/users';
 import Meetings from '/imports/api/meetings';
 import stopWatchingExternalVideo from '/imports/api/external-videos/server/methods/stopWatchingExternalVideo';
+import stopWatchingExternalWeb from '/imports/api/external-web/server/methods/stopWatchingExternalWeb';
 
 export default function changePresenter(presenter, userId, meetingId, changedBy) {
   const selector = {
@@ -32,6 +33,7 @@ export default function changePresenter(presenter, userId, meetingId, changedBy)
   if (meeting && meeting.externalVideoUrl) {
     Logger.info(`ChangePresenter:There is external video being shared. Stopping it due to presenter change, ${meeting.externalVideoUrl}`);
     stopWatchingExternalVideo({ meetingId, requesterUserId: userId });
+    stopWatchingExternalWeb({ meetingId, requesterUserId: userId });
   }
   return Users.update(selector, modifier, cb);
 }

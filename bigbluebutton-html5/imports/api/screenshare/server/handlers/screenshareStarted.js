@@ -4,6 +4,7 @@ import Users from '/imports/api/users';
 import addScreenshare from '../modifiers/addScreenshare';
 import Logger from '/imports/startup/server/logger';
 import stopWatchingExternalVideo from '/imports/api/external-videos/server/methods/stopWatchingExternalVideo';
+import stopWatchingExternalWeb from '/imports/api/external-web/server/methods/stopWatchingExternalWeb';
 
 export default function handleScreenshareStarted({ body }, meetingId) {
   check(meetingId, String);
@@ -15,6 +16,7 @@ export default function handleScreenshareStarted({ body }, meetingId) {
   if (meeting && meeting.externalVideoUrl) {
     Logger.info(`ScreenshareStarted: There is external video being shared. Stopping it due to presenter change, ${meeting.externalVideoUrl}`);
     stopWatchingExternalVideo({ meetingId, requesterUserId: presenterId });
+    stopWatchingExternalWeb({ meetingId, requesterUserId: presenterId });
   }
   return addScreenshare(meetingId, body);
 }

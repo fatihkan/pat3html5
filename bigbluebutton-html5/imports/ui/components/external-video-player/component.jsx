@@ -409,30 +409,12 @@ class VideoPlayer extends Component {
 
     return (
       <div
-        id="video-player"
-        data-test="videoPlayer"
-        ref={(ref) => { this.playerParent = ref; }}
+      style={{width: '100%',
+      height: '100%',
+      overflow: 'hidden'}}
       >
-        {autoPlayBlocked
-          ? (
-            <p className={styles.autoPlayWarning}>
-              {intl.formatMessage(intlMessages.autoPlayWarning)}
-            </p>
-          )
-          : ''
-        }
-        <ReactPlayer
-          className={styles.videoPlayer}
-          url={videoUrl}
-          config={this.opts}
-          muted={mutedByEchoTest}
-          playing={playing}
-          playbackRate={playbackRate}
-          onReady={this.handleOnReady}
-          onPlay={this.handleOnPlay}
-          onPause={this.handleOnPause}
-          ref={(ref) => { this.player = ref; }}
-        />
+
+        <iframe src={videoUrl} width="100%" height="100%" onLoad="alert(this.contentWindow.location);"></iframe>
       </div>
     );
   }

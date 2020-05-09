@@ -225,9 +225,7 @@ class App extends Component {
     if (!navbar) return null;
 
     return (
-      <header className={styles.navbar}>
-        {navbar}
-      </header>
+      <></>
     );
   }
 
@@ -279,9 +277,11 @@ class App extends Component {
     const {
       actionsbar,
       intl,
+      navbar
     } = this.props;
 
     if (!actionsbar) return null;
+    if (!navbar) return null;
 
     return (
       <section
@@ -294,6 +294,17 @@ class App extends Component {
     );
   }
 
+  //   renderNavBar() {
+  //   const { navbar } = this.props;
+
+  //   if (!navbar) return null;
+
+  //   return (
+  //     <header className={styles.navbar}>
+  //       {navbar}
+  //     </header>
+  //   );
+  // }
   renderActivityCheck() {
     const { User } = this.props;
 

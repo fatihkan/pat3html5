@@ -8,7 +8,7 @@ import { makeCall } from '/imports/ui/services/api';
 
 import ReactPlayer from 'react-player';
 
-const isUrlValid = url => ReactPlayer.canPlay(url);
+const isUrlValid = url => url;
 
 const startWatching = (url) => {
   const externalVideoUrl = url;

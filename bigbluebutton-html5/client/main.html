@@ -23,7 +23,9 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
       box-sizing: border-box;
     }
 
-    *, *:before, *:after {
+    *,
+    *:before,
+    *:after {
       box-sizing: inherit;
     }
 
@@ -31,8 +33,9 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
       position: fixed;
       height: 100%;
       font-family: 'Source Sans Pro', Arial, sans-serif;
-      font-size: 1rem; /* 16px */
-      background-color: #06172A;
+      font-size: 1rem;
+      /* 16px */
+      background-color: #174489;
     }
 
     a {
@@ -52,7 +55,7 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
       padding: 0;
       margin: -1px;
       overflow: hidden;
-      clip: rect(0,0,0,0);
+      clip: rect(0, 0, 0, 0);
       border: 0;
     }
 
@@ -71,6 +74,7 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
   <script src="compatibility/kurento-extension.js?v=VERSION" language="javascript"></script>
   <script src="compatibility/kurento-utils.js?v=VERSION" language="javascript"></script>
 </head>
+
 <body style="background-color: #06172A">
   <div id="app" role="document"></div>
   <audio id="remote-media" autoPlay="autoplay">

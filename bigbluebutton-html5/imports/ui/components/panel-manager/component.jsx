@@ -141,6 +141,8 @@ class PanelManager extends PureComponent {
       <Resizable
         minWidth={USERLIST_MIN_WIDTH_PX}
         maxWidth={USERLIST_MAX_WIDTH_PX}
+        minHeight={200}
+        maxHeight={400}
         ref={(node) => { this.resizableUserList = node; }}
         enable={resizableEnableOptions}
         key={this.userlistKey}

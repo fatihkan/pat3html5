@@ -38,6 +38,10 @@ function shouldShowExternalVideo() {
   const { enabled: enableExternalVideo } = Meteor.settings.public.externalVideoPlayer;
   return enableExternalVideo && getVideoUrl();
 }
+function shouldShowExternalWeb() {
+  const { enabled: enableExternalWeb } = Meteor.settings.public.externalWebPlayer;
+  return enableExternalWeb && getVideoUrl();
+}
 
 function shouldShowOverlay() {
   return getFromUserSettings('bbb_enable_video', KURENTO_CONFIG.enableVideo);
@@ -58,7 +62,7 @@ const toggleSwapLayout = () => {
   swapLayout.tracker.changed();
 };
 
-export const shouldEnableSwapLayout = () => !shouldShowScreenshare() && !shouldShowExternalVideo();
+export const shouldEnableSwapLayout = () => !shouldShowScreenshare() && !shouldShowExternalVideo() && !shouldShowExternalWeb();
 
 export const getSwapLayout = () => {
   swapLayout.tracker.depend();
@@ -70,6 +74,7 @@ export default {
   shouldShowWhiteboard,
   shouldShowScreenshare,
   shouldShowExternalVideo,
+  shouldShowExternalWeb,
   shouldShowOverlay,
   isUserPresenter,
   isVideoBroadcasting,

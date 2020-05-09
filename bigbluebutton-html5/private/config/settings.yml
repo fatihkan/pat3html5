@@ -6,13 +6,13 @@ public:
     autoJoin: true
     listenOnlyMode: true
     forceListenOnly: false
-    skipCheck: false
-    clientTitle: BigBlueButton
-    appName: BigBlueButton HTML5 Client
+    skipCheck: true
+    clientTitle: Pat3
+    appName: Pat3
     bbbServerVersion: 2.2-dev
-    copyright: "©2019 BigBlueButton Inc."
+    copyright: "©2020 Pat3 Inc."
     html5ClientBuild: HTML5_CLIENT_VERSION
-    helpLink: https://bigbluebutton.org/html5/
+    helpLink: https://pat3.com/
     lockOnJoin: true
     cdn: ""
     basename: "/html5client"
@@ -28,11 +28,11 @@ public:
     defaultSettings:
       application:
         animations: true
-        chatAudioAlerts: false
-        chatPushAlerts: false
-        userJoinAudioAlerts: false
-        userJoinPushAlerts: false
-        fallbackLocale: en
+        chatAudioAlerts: true
+        chatPushAlerts: true
+        userJoinAudioAlerts: true
+        userJoinPushAlerts: true
+        fallbackLocale: tr
         overrideLocale: null
       audio:
         inputDeviceId: undefined
@@ -81,13 +81,15 @@ public:
       - warning
   externalVideoPlayer:
     enabled: true
+  externalWebPlayer:
+    enabled: true
   networkMonitoring:
     enableNetworkMonitoring: false
     packetLostThreshold: 10
   kurento:
-    wsUrl: HOST
+    wsUrl: wss://pat3.com/bbb-webrtc-sfu
     chromeDefaultExtensionKey: akgoaoikmbmhcopjgakkcepdgdgkjfbc
-    chromeDefaultExtensionLink: https://chrome.google.com/webstore/detail/bigbluebutton-screenshare/akgoaoikmbmhcopjgakkcepdgdgkjfbc
+    chromeDefaultExtensionLink: https://chrome.google.com/webstore/detail/pat3-screenshare/akgoaoikmbmhcopjgakkcepdgdgkjfbc
     chromeExtensionKey: KEY
     chromeExtensionLink: LINK
     chromeScreenshareSources:
@@ -125,10 +127,10 @@ public:
     toggleRecording: false
     toggleSelfVoice: false
   poll:
-    enabled: true
+    enabled: false
     max_custom: 5
   captions:
-    enabled: true
+    enabled: false
     enableDictation: false
     backgroundColor: "#000000"
     fontColor: "#FFFFFF"
@@ -138,7 +140,7 @@ public:
     lines: 2
     time: 5000
   chat:
-    enabled: true
+    enabled: false
     min_message_length: 1
     max_message_length: 5000
     grouping_messages_window: 10000

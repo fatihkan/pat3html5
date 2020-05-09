@@ -65,7 +65,6 @@ const ChatListItem = (props) => {
     compact,
     intl,
     tabIndex,
-    isPublicChat,
     shortcuts: TOGGLE_CHAT_PUB_AK,
     chatPanelOpen,
   } = props;
@@ -75,52 +74,11 @@ const ChatListItem = (props) => {
   linkClasses[styles.active] = isCurrentChat;
 
   return (
-    <div
-      data-test="chatButton"
-      role="button"
-      className={cx(styles.chatListItem, linkClasses)}
-      aria-expanded={isCurrentChat}
-      tabIndex={tabIndex}
-      accessKey={isPublicChat(chat) ? TOGGLE_CHAT_PUB_AK : null}
-      onClick={() => handleClickToggleChat(chat.userId)}
-      id="chat-toggle-button"
-      aria-label={isPublicChat(chat) ? intl.formatMessage(intlMessages.titlePublic) : chat.name}
-    >
-
-      <div className={styles.chatListItemLink}>
-        <div className={styles.chatIcon}>
-          {chat.icon
-            ? <ChatIcon icon={chat.icon} />
-            : (
-              <ChatAvatar
-                isModerator={chat.isModerator}
-                color={chat.color}
-                name={chat.name.toLowerCase().slice(0, 2)}
-              />
-            )}
-        </div>
-        <div className={styles.chatName}>
-          {!compact
-            ? (
-              <span className={styles.chatNameMain}>
-                {isPublicChat(chat)
-                  ? intl.formatMessage(intlMessages.titlePublic) : chat.name}
-              </span>
-            ) : null}
-        </div>
-        {(chat.unreadCounter > 0)
-          ? (
-            <ChatUnreadCounter
-              counter={chat.unreadCounter}
-            />
-          )
-          : null}
-      </div>
-    </div>
+    <></>
   );
 };
 
 ChatListItem.propTypes = propTypes;
 ChatListItem.defaultProps = defaultProps;
 
-export default withShortcutHelper(injectIntl(ChatListItem), 'togglePublicChat');
+export default withShortcutHelper(injectIntl(ChatListItem));
